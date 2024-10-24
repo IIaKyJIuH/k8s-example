@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: fast-api
+        app: fast-api  # Service will lookup these labels
     spec:
       containers:
       - name: fast-api-pod
@@ -29,13 +29,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: fast-api
+  name: fast-api    # selects pods with this label
 spec:
   type: NodePort
   selector:
     app: fast-api
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
+      port: 80        # Service port
+      targetPort: 80  # POD's port
       nodePort: 30100
